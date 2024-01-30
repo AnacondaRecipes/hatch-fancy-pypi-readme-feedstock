@@ -50,9 +50,17 @@ test:
 about:
   home: https://github.com/hynek/hatch-fancy-pypi-readme
   summary: Fancy PyPI READMEs with Hatch
+  description: |
+    hatch-fancy-pypi-readme is a Hatch metadata plugin for everyone who cares about the first impression
+    of their project’s PyPI landing page. It allows you to define your PyPI project description in terms of
+    concatenated fragments that are based on static strings, files, and most importantly: parts of files defined
+    using cut-off points or regular expressions.
+  license_family: MIT
   license: MIT
   license_file:
     - LICENSE.txt
+  dev_url: https://github.com/hynek/hatch-fancy-pypi-readme
+  doc_url: https://hatch.pypa.io/latest/
 
 extra:
   recipe-maintainers:
