@@ -20,12 +20,12 @@ requirements:
   host:
     - hatchling
     - pip
-    - python >=3.7
+    - python
   run:
     - hatchling
-    - python >=3.7
-    - tomli
-    - typing-extensions
+    - python
+    - tomli  # [py<311]
+    - typing-extensions  # [py<38]
 
 test:
   source_files:
