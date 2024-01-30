@@ -10,8 +10,8 @@ source:
   sha256: 44dd239f1a779b9dcf8ebc9401a611fd7f7e3e14578dcf22c265dfaf7c1514b8
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  skip: True  # [py<37]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
   entry_points:
     - hatch-fancy-pypi-readme=hatch_fancy_pypi_readme.__main__:main
