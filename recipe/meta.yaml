@@ -22,8 +22,9 @@ requirements:
     - pip
     - python
   run:
+    - hatchling
     - python
-    - tomli 
+    - tomli
     - typing-extensions
 
 test:
