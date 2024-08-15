@@ -24,7 +24,7 @@ requirements:
   run:
     - hatchling
     - python
-    - tomli
+    - tomli # [py<311]
     - typing-extensions
 
 test:
