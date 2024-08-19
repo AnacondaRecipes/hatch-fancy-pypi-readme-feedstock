@@ -1,5 +1,5 @@
 {% set name = "hatch-fancy-pypi-readme" %}
-{% set version = "22.8.0" %}
+{% set version = "24.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/hatch_fancy_pypi_readme-{{ version }}.tar.gz
-  sha256: da91282ca09601c18aded8e378daf8b578c70214866f0971156ee9bb9ce6c26a
+  sha256: 44dd239f1a779b9dcf8ebc9401a611fd7f7e3e14578dcf22c265dfaf7c1514b8
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  skip: true  # [py<37]
   number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed -vvv
   entry_points:
     - hatch-fancy-pypi-readme=hatch_fancy_pypi_readme.__main__:main
 
@@ -20,12 +20,12 @@ requirements:
   host:
     - hatchling
     - pip
-    - python >=3.7
+    - python
   run:
     - hatchling
-    - python >=3.7
-    - tomli
-    - typing-extensions
+    - python
+    - tomli # [py<311]
+    - typing-extensions # [py<38]
 
 test:
   source_files:
@@ -43,16 +43,25 @@ test:
     - hatch-fancy-pypi-readme --help
     - pytest -vvv --capture=tee-sys tests
   requires:
-    - build
+    - python-build
     - pip
     - pytest
 
 about:
   home: https://github.com/hynek/hatch-fancy-pypi-readme
   summary: Fancy PyPI READMEs with Hatch
+  description: |
+    hatch-fancy-pypi-readme is a Hatch metadata plugin for everyone who cares
+    about the first impression of their project’s PyPI landing page. It allows you
+    to define your PyPI project description in terms of concatenated fragments that
+    are based on static strings, files, and most importantly: parts of files defined
+    using cut-off points or regular expressions.
   license: MIT
   license_file:
     - LICENSE.txt
+  license_family: MIT
+  dev_url: https://github.com/hynek/hatch-fancy-pypi-readme
+  doc_url: https://github.com/hynek/hatch-fancy-pypi-readme#readme
 
 extra:
   recipe-maintainers:
