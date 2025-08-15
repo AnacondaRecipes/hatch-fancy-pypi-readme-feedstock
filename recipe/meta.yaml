@@ -11,7 +11,7 @@ source:
 
 build:
   skip: true  # [py<37]
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed -vvv
   entry_points:
     - hatch-fancy-pypi-readme=hatch_fancy_pypi_readme.__main__:main
@@ -46,6 +46,7 @@ test:
     - python-build
     - pip
     - pytest
+    - wheel
 
 about:
   home: https://github.com/hynek/hatch-fancy-pypi-readme
