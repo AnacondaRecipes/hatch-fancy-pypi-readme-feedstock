@@ -1,17 +1,17 @@
 {% set name = "hatch-fancy-pypi-readme" %}
-{% set version = "24.1.0" %}
+{% set version = "25.1.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/hatch_fancy_pypi_readme-{{ version }}.tar.gz
-  sha256: 44dd239f1a779b9dcf8ebc9401a611fd7f7e3e14578dcf22c265dfaf7c1514b8
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace("-", "_") }}-{{ version }}.tar.gz
+  sha256: 9c58ed3dff90d51f43414ce37009ad1d5b0f08ffc9fc216998a06380f01c0045
 
 build:
-  skip: true  # [py<37]
-  number: 1
+  skip: true  # [py<38]
+  number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed -vvv
   entry_points:
     - hatch-fancy-pypi-readme=hatch_fancy_pypi_readme.__main__:main
@@ -25,7 +25,6 @@ requirements:
     - hatchling
     - python
     - tomli  # [py<311]
-    - typing-extensions  # [py<38]
 
 test:
   source_files:
@@ -66,5 +65,8 @@ about:
   doc_url: https://github.com/hynek/hatch-fancy-pypi-readme#readme
 
 extra:
+  skip-lints:
+    # hatchling is needed in host for proper tests running
+    - python_build_tools_in_host
   recipe-maintainers:
     - thewchan
